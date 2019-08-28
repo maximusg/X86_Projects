@@ -1,0 +1,65 @@
+     1                                  ;
+     2                                  ; Excerpt from assign1.asm
+     3                                  ;
+     4                                  
+     5                                  bits 64
+     6                                  
+     7                                  section .text
+     8                                  
+     9                                  global _start
+    10                                  
+    11                                  hello:
+    12 00000000 4989F8                      mov     r8, rdi                 ; save parameters
+    13 00000003 4989F1                      mov     r9, rsi
+    14                                  
+    15 00000006 48BE-                       mov     rsi, msg
+    15 00000008 [0000000000000000] 
+    16 00000010 BF01000000                  mov     edi, 1
+    17 00000015 BA21000000                  mov     rdx, msg_len
+    18 0000001A B801000000                  mov     eax, 1                  ; write()
+    19 0000001F 0F05                        syscall
+    20                                  
+    21 00000021 4C89CA                      mov     rdx, r9                 ; number of bytes to read
+    22 00000024 4C89C6                      mov     rsi, r8                 ; read buffer
+    23 00000027 BF00000000                  mov     edi, 0                  ; use stdin
+    24 0000002C B800000000                  mov     eax, 0                  ; read()
+    25 00000031 0F05                        syscall
+    26 00000033 C3                          ret
+    27                                  
+    28                                  _start:
+    29 00000034 4889E5                      mov     rbp, rsp
+    30 00000037 4881EC80000000              sub     rsp, 128                ; allocate read buffer on stack
+    31 0000003E BE10000000                  mov     rsi, 16                 ; max input length
+    32 00000043 4889E7                      mov     rdi, rsp                ; rdi points to read buffer
+    33 00000046 E8B5FFFFFF                  call    hello                   ; rsi points to read buffer
+    34                                  
+    35                                  after:
+    36 0000004B 4889C3                      mov     rbx, rax		        ; save read count returned from hello()
+    37 0000004E 488D5424FF                  lea     rdx, [rsp - 1]          ; get address of the byte preceding read buffer
+    38                                  ;    mov     rdx, [rsp - 1]          ; what's the difference?
+    39                                  
+    40                                  L1:
+    41 00000053 48FFC2                      inc     rdx
+    42 00000056 8A02                        mov     al, [rdx]
+    43                                  Q1:
+    44 00000058 3C0A                        cmp     al, 10                  ; check for LF (0x0a)
+    45 0000005A 75F7                        jnz     L1 
+    46                                  
+    47                                  print:
+    48 0000005C 4889DA                      mov     rdx, rbx                ; message length
+    49                                                                      ; RSI already points to read buffer
+    50 0000005F BF01000000                  mov     rdi, 1                  ; output to stdout
+    51 00000064 B801000000                  mov     rax, 1                  ; write()
+    52 00000069 0F05                        syscall
+    53                                  
+    54                                  done:
+    55 0000006B B83C000000                  mov 	rax, 60
+    56 00000070 0F05                        syscall
+    57                                  
+    58                                  section .data
+    59                                  
+    60 00000000 506C6561736520656E-     msg:        db      `Please enter your NPS user name: `
+    60 00000009 74657220796F757220-
+    60 00000012 4E5053207573657220-
+    60 0000001B 6E616D653A20       
+    61                                  msg_len     equ     $-msg

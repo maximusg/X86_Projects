@@ -1,0 +1,65 @@
+     1                                  ;08MAY19
+     2                                  ;CS3140/Assignment 3
+     3                                  ;Command line to assemble program:
+     4                                  ;nasm -f elf64 assign3.asm
+     5                                  ;Command line to link object file to executable:
+     6                                  ;ld -o assign3 -m elf_x86_64 assign3.o
+     7                                  ;command line arguments:
+     8                                  ;./assign3 //will execute the program.
+     9                                  ;details:
+    10                                  ;type any string and press enter, will mimic Unix "cat" untility, but swaps
+    11                                  ;cases. To exit program use ctrl+c or ctrl+d
+    12                                  bits 64
+    13                                  
+    14                                  section .text                  ;main code section
+    15                                  
+    16                                  global _start                  ;sets _start for linker
+    17                                  
+    18                                  _start:
+    19                                  
+    20 00000000 E80A000000                  call .getInputAndConvert   ;gets string input from user, and converts
+    21                                      
+    22                                      
+    23                                  .end:                          ;jumped to when user inputs ctr+D to exit
+    24 00000005 4831FF                      xor rdi, rdi               ;set return value to 0
+    25 00000008 B83C000000                  mov rax, 60                ;system call number (system exit)
+    26 0000000D 0F05                        syscall                    ;call kernel exit program
+    27                                  
+    28                                  .getInputAndConvert:
+    29 0000000F B800000000                  mov rax, 0                 ;use stdin
+    30 00000014 BF00000000                  mov rdi, 0                 ;set for read()
+    31 00000019 48BE-                       mov rsi, buff              ;read in 1 byte to buffer
+    31 0000001B [0000000000000000] 
+    32 00000023 BA01000000                  mov rdx, 1                 ;read in 1 byte
+    33 00000028 0F05                        syscall                    ;call kernel get user input
+    34 0000002A 4883F801                    cmp rax, 1                 ;check for error (less than 1), or zero
+    35 0000002E 7CD5                        jl .end                    ;jump to end program if error or zero
+    36                                      
+    37                                  .charRead:                     ;check char then write to sys.out
+    38 00000030 8A0425[00000000]            mov al, [buff]             ;move value at location in rdx into al
+    39 00000037 3C61                        cmp al, 'a'                ;compare al to 'a' ascii value
+    40 00000039 7C0E                        jl  .upper                 ;if al value is less jmp to check uppercase
+    41 0000003B 3C7A                        cmp al, 'z'                ;compare al to 'z' ascii value
+    42 0000003D 7F1A                        jg .printOutput            ;jmp if al value is greater than not a letter
+    43 0000003F 803425[00000000]20          xor byte[buff], 0x20        ;convert lowercase ascii to upercase ascii
+    44 00000047 EB10                        jmp .printOutput           ;after replacement occured jump to next letter
+    45                                  .upper:                        ;check if uppercase char
+    46 00000049 3C41                        cmp al, 'A'                ;compare al to 'A" ascii value
+    47 0000004B 7C0C                        jl  .printOutput           ;if less than, then its not a letter
+    48 0000004D 3C5A                        cmp al, 'Z'                ;compare al to 'Z' ascii vlaue
+    49 0000004F 7F08                        jg .printOutput            ;if greater than then not a letter
+    50 00000051 803425[00000000]20          xor byte[buff], 0x20       ;convert uppercase ascii to lowercase ascii
+    51                                  
+    52                                  .printOutput:                  ;prints output after .getInputAndConvert
+    53 00000059 4831F6                      xor rsi, rsi               ;clear rsi
+    54 0000005C 48BE-                       mov rsi, buff              ;point rsi to buff
+    54 0000005E [0000000000000000] 
+    55 00000066 BA01000000                  mov rdx, 1                 ;place the message length (1) into rdx
+    56 0000006B BF01000000                  mov rdi, 1                 ;set rdi to write
+    57 00000070 B801000000                  mov rax,1                  ;use stdout
+    58 00000075 0F05                        syscall                    ;write the output from rsi to stdout
+    59                                  
+    60 00000077 EB96                        jmp .getInputAndConvert    ;return to start.
+    61                                  
+    62                                  section .data
+    63 00000000 00                      buff:            db      0     ; 1 byte buffer

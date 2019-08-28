@@ -1,0 +1,92 @@
+Heap stuff
+0x603000: Allocated (592 bytes)
+0x603250: Allocated (1936 bytes)
+0x6039e0: Unallocated (5216 bytes). next: 0x610440, prev: 0x61fb10
+0x604e40: Allocated (1344 bytes)
+0x605380: Allocated (1888 bytes)
+0x605ae0: Unallocated (1936 bytes). next: 0x622ed0, prev: 0x626b70
+0x606270: Allocated (1536 bytes)
+0x606870: Unallocated (3664 bytes). next: 0x61fb10, prev: 0x609880
+0x6076c0: Allocated (1408 bytes)
+0x607c40: Allocated (2080 bytes)
+0x608460: Allocated (2240 bytes)
+0x608d20: Allocated (1600 bytes)
+0x609360: Allocated (1312 bytes)
+0x609880: Unallocated (2480 bytes). next: 0x606870, prev: 0x618510
+0x60a230: Allocated (1584 bytes)
+0x60a860: Unallocated (4480 bytes). next: 0x60ce90, prev: 0x616640
+0x60b9e0: Allocated (2256 bytes)
+0x60c2b0: Unallocated (1424 bytes). next: 0x619240, prev: 0x61ac90
+0x60c840: Allocated (1616 bytes)
+0x60ce90: Unallocated (3296 bytes). next: 0x62c600, prev: 0x60a860
+0x60db70: Allocated (1584 bytes)
+0x60e1a0: Allocated (1408 bytes)
+0x60e720: Unallocated (5472 bytes). next: 0x626b70, prev: 0x610440
+0x60fc80: Allocated (1984 bytes)
+0x610440: Unallocated (3920 bytes). next: 0x60e720, prev: 0x6039e0
+0x611390: Allocated (1600 bytes)
+0x6119d0: Unallocated (1616 bytes). next: 0xf7dcfca0, prev: 0x62a8b0
+0x612020: Allocated (2208 bytes)
+0x6128c0: Allocated (2448 bytes)
+0x613250: Allocated (2512 bytes)
+0x613c20: Allocated (1552 bytes)
+0x614230: Allocated (2096 bytes)
+0x614a60: Unallocated (3696 bytes). next: 0x629500, prev: 0x620ec0
+0x6158d0: Allocated (1968 bytes)
+0x616080: Allocated (1472 bytes)
+0x616640: Unallocated (4160 bytes). next: 0x60a860, prev: 0x619240
+0x617680: Allocated (1872 bytes)
+0x617dd0: Allocated (1856 bytes)
+0x618510: Unallocated (1920 bytes). next: 0x609880, prev: 0x62c600
+0x618c90: Allocated (1456 bytes)
+0x619240: Unallocated (4736 bytes). next: 0x616640, prev: 0x60c2b0
+0x61a4c0: Allocated (2000 bytes)
+0x61ac90: Unallocated (3328 bytes). next: 0x60c2b0, prev: 0x624590
+0x61b990: Allocated (1216 bytes)
+0x61be50: Allocated (1552 bytes)
+0x61c460: Allocated (1824 bytes)
+0x61cb80: Allocated (2352 bytes)
+0x61d4b0: Allocated (2480 bytes)
+0x61de60: Allocated (1632 bytes)
+0x61e4c0: Allocated (1376 bytes)
+0x61ea20: Allocated (1888 bytes)
+0x61f180: Unallocated (1056 bytes). next: 0x627fc0, prev: 0x629500
+0x61f5a0: Allocated (1392 bytes)
+0x61fb10: Unallocated (3136 bytes). next: 0x6039e0, prev: 0x606870
+0x620750: Allocated (1904 bytes)
+0x620ec0: Unallocated (4128 bytes). next: 0x614a60, prev: 0x622ed0
+0x621ee0: Allocated (1632 bytes)
+0x622540: Allocated (1088 bytes)
+0x622980: Allocated (1360 bytes)
+0x622ed0: Unallocated (1920 bytes). next: 0x620ec0, prev: 0x605ae0
+0x623650: Allocated (1488 bytes)
+0x623c20: Allocated (2416 bytes)
+0x624590: Unallocated (8368 bytes). next: 0x61ac90, prev: 0xf7dcfca0
+0x626640: Allocated (1328 bytes)
+0x626b70: Unallocated (2224 bytes). next: 0x605ae0, prev: 0x60e720
+0x627420: Allocated (1840 bytes)
+0x627b50: Allocated (1136 bytes)
+0x627fc0: Unallocated (1952 bytes). next: 0x62a8b0, prev: 0x61f180
+0x628760: Allocated (2192 bytes)
+0x628ff0: Allocated (1296 bytes)
+0x629500: Unallocated (2448 bytes). next: 0x61f180, prev: 0x614a60
+0x629e90: Allocated (1488 bytes)
+0x62a460: Allocated (1104 bytes)
+0x62a8b0: Unallocated (1232 bytes). next: 0x6119d0, prev: 0x627fc0
+0x62ad80: Allocated (2416 bytes)
+0x62b6f0: Allocated (1792 bytes)
+0x62bdf0: Allocated (2064 bytes)
+0x62c600: Unallocated (3408 bytes). next: 0x618510, prev: 0x60ce90
+0x62d350: Allocated (1648 bytes)
+0x62d9c0: Allocated (1584 bytes)
+0x62dff0: Tail (94224 bytes)
+A total of 94896 bytes are allocated
+A total of 81216 bytes are free
+
+total free blocks 25
+total allocated blocks 55
+largest allocated blocks 2512
+largest free blocks 8368
+first allocated block 0x0x603000
+last allocated block 0x0x62d9c0
+top chunk location 0x64500
